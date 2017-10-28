@@ -1,10 +1,27 @@
-<div>
-  <ul>
-    <li *ngFor="let student of students"><a (click)="showStudent(student)">{{student.ime}}</a></li>
-  </ul>
-
-  <app-student-details [student]="currentStudent" *ngIf="currentStudent!==null"></app-student-details>
-
+<div class="row">
+  <nav class="navbar navbar-light col-md-3">
+    <ul class="nav navbar-nav left-buffer">
+      <li *ngFor="let student of students" class="nav-item">
+        <a class="nav-link"
+           (click)="showStudent(student)"
+           [class.active]="currentStudent===student">
+          {{student.ime}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+<div class="col-md-9">
+  <div class="container-fluid">
+    <div class="card" *ngIf="currentStudent!==undefined">
+      <div class="bg-info">
+        <p> Previewing: {{currentStudent.ime}}</p>
+      </div>
+      <div class="card-body">
+        <app-student-details [student]="currentStudent" *ngIf="currentStudent!==null"></app-student-details>
+      </div>
+    </div>
+  </div>
 </div>
 
 
+</div>

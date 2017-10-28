@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+.bg-info p{
+  height: 36px;
+  font-size: xx-large;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  margin-left: 20px;
+}
+.card{
+  background: aliceblue;
+  width: 45%;
+}
+.card h1{
+  margin-left: 8px;
+}
