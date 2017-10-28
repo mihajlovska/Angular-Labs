@@ -7,7 +7,7 @@ import { Student } from '../model/student';
 })
 export class StudentDetailsComponent implements OnInit {
 
-  @Input()
+  @Input('inputStudent')
   public student: Student;
   constructor() { }
 

@@ -17,8 +17,8 @@
         <p> Previewing: {{currentStudent.ime}}</p>
       </div>
       <div class="card-body">
-        <app-student-details [student]="currentStudent" *ngIf="currentStudent!==null"></app-student-details>
-        <app-student-edit [editStudent]="currentStudent" *ngIf="currentStudent!==undefined"></app-student-edit>
+        <app-student-details [inputStudent]="currentStudent" *ngIf="currentStudent!==undefined"></app-student-details>
+        <app-student-edit [editingStudent]="currentStudent"></app-student-edit>
       </div>
     </div>
   </div>

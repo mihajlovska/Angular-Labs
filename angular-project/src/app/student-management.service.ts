@@ -29,6 +29,13 @@ export class StudentManagementService {
   public student(): Promise<Student[]> {
     return Promise.resolve(this.students);
   }
+  save(student: Student) {
+    this.students.push(student);
+  }
+  edit(originalStudent: Student, updatedStudent: Student) {
+
+    Object.assign(originalStudent, updatedStudent);
+  }
   constructor() { }
 
 }
