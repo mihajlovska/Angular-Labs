@@ -1,0 +1,10 @@
+<div>
+  <ul>
+    <li *ngFor="let student of students"><a (click)="showStudent(student)">{{student.ime}}</a></li>
+  </ul>
+
+  <app-student-details [student]="currentStudent" *ngIf="currentStudent!==null"></app-student-details>
+
+</div>
+
+
