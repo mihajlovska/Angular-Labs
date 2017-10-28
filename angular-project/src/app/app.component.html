@@ -18,6 +18,7 @@
       </div>
       <div class="card-body">
         <app-student-details [student]="currentStudent" *ngIf="currentStudent!==null"></app-student-details>
+        <app-student-edit [editStudent]="currentStudent" *ngIf="currentStudent!==undefined"></app-student-edit>
       </div>
     </div>
   </div>
