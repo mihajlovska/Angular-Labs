@@ -2,9 +2,8 @@
   <nav class="navbar navbar-light col-md-3">
     <ul class="nav navbar-nav left-buffer">
       <li *ngFor="let student of students" class="nav-item">
-        <a class="nav-link"
-           (click)="showStudent(student)"
-           [class.active]="currentStudent===student">
+        <a
+           routerLinkActive="active">
           {{student.ime}}
         </a>
       </li>
@@ -26,3 +25,4 @@
 
 
 </div>
+

@@ -11,15 +11,11 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
 export class AppComponent {
   title = 'Students information';
   public students: Student[];
-  public currentStudent: Student;
+
   constructor(private studentService: StudentManagementService) {}
   ngOnInit(): void {
     this.studentService.student()
       .then(students => this.students = students)
       .catch(error => console.error(error.errorMessage));
   }
-  showStudent(student: Student) {
-    this.currentStudent = student;
-  }
-
 }
