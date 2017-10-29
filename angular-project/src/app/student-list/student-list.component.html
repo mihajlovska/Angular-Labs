@@ -2,23 +2,26 @@
   <nav class="navbar navbar-light col-md-3">
     <ul class="nav navbar-nav left-buffer">
       <li *ngFor="let student of students" class="nav-item">
-        <a
-          routerLinkActive="active">
+        <a [routerLink]="['/details',student.indeks]" routerLinkActive="active" class="navbar-link">
           {{student.ime}}
         </a>
       </li>
+      <a [routerLink]="['/new']" routerLinkActive="active" class="btn btn-primary">
+        +
+      </a>
     </ul>
+    <router-outlet></router-outlet>
   </nav>
   <div class="col-md-9">
     <div class="container-fluid">
-      <div class="card" *ngIf="currentStudent!==undefined">
+      <div class="card">
         <div class="bg-info">
-          <p> Previewing: {{currentStudent.ime}}</p>
+
         </div>
         <div class="card-body">
-          <app-student-details [inputStudent]="currentStudent" *ngIf="currentStudent!==undefined"></app-student-details>
-          <app-student-edit [editingStudent]="currentStudent"></app-student-edit>
+
         </div>
       </div>
     </div>
   </div>
+</div>

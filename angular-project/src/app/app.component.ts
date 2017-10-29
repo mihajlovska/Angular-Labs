@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { StudentManagementService } from './student-management.service';
 import {Student} from './model/student';
 import { StudentDetailsComponent } from './student-details/student-details.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 @Component({
   selector: 'app-root',

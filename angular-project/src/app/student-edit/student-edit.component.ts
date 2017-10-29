@@ -11,9 +11,13 @@ export class StudentEditComponent implements OnInit {
   public EDIT_ACTION = 'Edit';
   private _editingStudent: Student;
   public action = this.CREATE_ACTION;
+  public  student: Student;
+
   @Input('editingStudent')
   set setEditingStudent(editingStudent: Student){
-    this.student = new Student();
+    this.setStudent(editingStudent);
+  }
+  private setStudent(editingStudent: Student) {
     if (editingStudent) {
       this.action = this.EDIT_ACTION;
       this._editingStudent = editingStudent;
@@ -23,17 +27,20 @@ export class StudentEditComponent implements OnInit {
       this.student.nasoka = editingStudent.nasoka;
     }
   }
-  student = new Student();
-  constructor(private studentService: StudentManagementService) { }
+  constructor(private studentService: StudentManagementService) {
+    this.student = new Student();
+  }
 
   ngOnInit() {
   }
   public save(): void {
-    this.studentService.save(this.student);
+    this.studentService.save(this.student)
+      .then(studentFormServer => this.setStudent(studentFormServer));
     this.student = new Student();
   }
   public edit() {
-    this.studentService.edit(this._editingStudent, this.student);
+    this.studentService.edit(this._editingStudent, this.student)
+      .then(studentFormServer => this.setStudent(studentFormServer));
   }
 
 

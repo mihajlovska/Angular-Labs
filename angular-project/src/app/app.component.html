@@ -1,28 +1,7 @@
-<div class="row">
-  <nav class="navbar navbar-light col-md-3">
-    <ul class="nav navbar-nav left-buffer">
-      <li *ngFor="let student of students" class="nav-item">
-        <a
-           routerLinkActive="active">
-          {{student.ime}}
-        </a>
-      </li>
-    </ul>
-  </nav>
-<div class="col-md-9">
-  <div class="container-fluid">
-    <div class="card" *ngIf="currentStudent!==undefined">
-      <div class="bg-info">
-        <p> Previewing: {{currentStudent.ime}}</p>
-      </div>
-      <div class="card-body">
-        <app-student-details [inputStudent]="currentStudent" *ngIf="currentStudent!==undefined"></app-student-details>
-        <app-student-edit [editingStudent]="currentStudent"></app-student-edit>
-      </div>
-    </div>
-  </div>
+<div>
+  <a routerLink="/list" routerLinkActive="active">Student list</a>
+  <a routerLink="/details" routerLinkActive="active">Student details</a>
+  <router-outlet></router-outlet>
 </div>
 
-
-</div>
 
