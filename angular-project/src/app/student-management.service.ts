@@ -4,7 +4,6 @@ import {Student} from './model/student';
 
 @Injectable()
 export class StudentManagementService {
-
   private students = [{
     ime: 'Stefanija',
     prezime: 'Mihajlovska',
@@ -39,6 +38,17 @@ export class StudentManagementService {
     Object.assign(studentsFromServer, this.students);
     this.students = studentsFromServer;
     return Promise.resolve(updatedStudent);
+  }
+  change(student: Student): Promise<Student> {
+    for (let i = 0; i < this.students.length; i++) {
+      if (this.students[i].indeks === student.indeks) {
+        this.students[i].ime = student.ime;
+        this.students[i].prezime = student.prezime;
+        this.students[i].nasoka = student.nasoka;
+        return Promise.resolve(this.students[i]);
+      }
+    }
+    return Promise.reject('error');
   }
   findByIndeks(studentIndeks: string): Promise<Student> {
     const result = this.students.filter(student => student.indeks === studentIndeks);

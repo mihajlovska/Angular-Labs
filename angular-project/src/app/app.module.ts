@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'list', component: StudentListComponent },
     {path: 'details/:indeks', component: StudentDetailsComponent},
     {path: 'new', component: StudentEditComponent },
-    {path: 'edit/:indeks', component: StudentEditComponent}
+    {path: 'edit/:indeks', component: StudentEditMoreComponent}
 
   ];
 
