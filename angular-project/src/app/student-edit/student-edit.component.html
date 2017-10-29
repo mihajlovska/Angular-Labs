@@ -3,18 +3,11 @@
     <input type="text"
     class="form-control"
     [(ngModel)]="student.ime"/>
-    =={{student.ime}}
   </div>
   <div class="col-md12">
     <button class="btn btn-xs btn-success"
-            *ngIf="action===CREATE_ACTION"
             (click)="save()">
       Create
-    </button>
-    <button class="btn btn-xs btn-primary"
-    *ngIf="action===EDIT_ACTION"
-    (click)="edit()">
-      Edit
     </button>
   </div>
 </div>

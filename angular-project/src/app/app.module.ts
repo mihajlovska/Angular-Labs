@@ -12,7 +12,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {path: 'list', component: StudentListComponent },
-    {path: 'details/', component: StudentDetailsComponent},
     {path: 'details/:indeks', component: StudentDetailsComponent},
     {path: 'new', component: StudentEditComponent },
     {path: 'edit/:indeks', component: StudentEditComponent}

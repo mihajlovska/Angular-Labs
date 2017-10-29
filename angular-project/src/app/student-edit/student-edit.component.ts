@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from '../model/student';
+import { Router } from '@angular/router';
 import { StudentManagementService } from '../student-management.service';
 @Component({
   selector: 'app-student-edit',
@@ -26,9 +27,11 @@ export class StudentEditComponent implements OnInit {
       this.student.indeks = editingStudent.indeks;
       this.student.nasoka = editingStudent.nasoka;
     }
+    this.router.navigate(['list']);
   }
-  constructor(private studentService: StudentManagementService) {
+  constructor(private router: Router, private studentService: StudentManagementService) {
     this.student = new Student();
+    this.router = router;
   }
 
   ngOnInit() {

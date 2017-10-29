@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import {Student} from './model/student';
 
 @Injectable()
@@ -30,9 +31,6 @@ export class StudentManagementService {
     return Promise.resolve(this.students);
   }
   save(student: Student): Promise<Student> {
-    const studentsFromServer = [];
-    Object.assign(studentsFromServer, this.student);
-    this.students = studentsFromServer;
     this.students.push(student);
     return Promise.resolve(student);
   }
@@ -41,6 +39,19 @@ export class StudentManagementService {
     Object.assign(studentsFromServer, this.students);
     this.students = studentsFromServer;
     return Promise.resolve(updatedStudent);
+  }
+  findByIndeks(studentIndeks: string): Promise<Student> {
+    const result = this.students.filter(student => student.indeks === studentIndeks);
+    console.log('result:', result);
+    if (result && result.length > 0) {
+      return Promise.resolve(result[0]);
+    } else {
+      return Promise.reject({
+        errorMessage: 'No Student with the given index found',
+        errorCode: 404
+      });
+
+    }
   }
   constructor() { }
 
