@@ -1,55 +1,19 @@
 <h3>Edit selected student</h3>
 <div>
   <form [formGroup]="studentForm">
+      <label>Name:</label>
+        <input id="name" formControlName="name">
     <div>
-      <label>Name:
-        <input id="name" formControlName="name" required>
-        <div *ngIf="name.invalid && (name.dirty || name.touched)"
-        class="alert alert-danger">
-          <div *ngIf="name.errors.required">Name is required!</div>
-          <div *ngIf="name.errors.minLength">
-            Name must be at least 2 characters long.
-          </div>
-          <div *ngIf="name.errors.maxLength">
-            Name must be maximum 30 characters long.
-          </div>
-        </div>
-      </label>
+      <label>Surname:</label>
+        <input id="surname" formControlName="surname" >
     </div>
     <div>
-      <label>Surname:
-        <input id="surname" formControlName="surname" required>
-        <div *ngIf="surname.invalid && (surname.dirty || surname.touched)"
-             class="alert alert-danger">
-          <div *ngIf="surname.errors.required">Last name is required!</div>
-          <div *ngIf="surname.errors.minLength">
-            Last name must be at least 2 characters long.
-          </div>
-          <div *ngIf="surname.errors.maxLength">
-            Last name must be maximum 30 characters long.
-          </div>
-        </div>
-      </label>
+      <label>Index:</label>
+        <input id="index" formControlName="index">
     </div>
     <div>
-      <label>Index:
-        <input id="index" formControlName="index" required>
-        <div *ngIf="index.invalid && (index.dirty || index.touched)"
-             class="alert alert-danger">
-          <div *ngIf="index.errors.required">Index is required!</div>
-          <div *ngIf="index.errors.minLength">
-            Name must be at least 6 characters long.
-          </div>
-          <div *ngIf="index.errors.maxLength">
-            Name must be maximum 6 characters long.
-          </div>
-        </div>
-      </label>
-    </div>
-    <div>
-      <label>Modul1:
+      <label>Modul1:</label>
         <input formControlName="modul1">
-      </label>
     </div>
     <button (click)="change()">Change</button>
   </form>
