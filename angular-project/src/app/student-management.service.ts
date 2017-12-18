@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {Student} from './model/student';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Headers, Http,  } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import {MessageServiceService} from './message-service.service';
+import 'rxjs/add/operator/toPromise';
+
+
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable()
@@ -35,10 +39,13 @@ export class StudentManagementService {
     nasoka: 'KNI',
     indeks: '151112'
   }];
+  constructor(private http: HttpClient, private messageService: MessageServiceService) {
+  }
   private log(message: string) {
     this.messageService.add('HeroService: ' + message);
   }
   private handleError<T> (operation = 'operation', result?: T) {
+    console.log('error happened ', operation);
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
@@ -77,33 +84,33 @@ export class StudentManagementService {
     }
   }
 
-  save(student: Student): Promise<Student> {
-    this.students.push(student);
-    return Promise.resolve(student);
-  }
+  // // save(student: Student): Promise<Student> {
+  //   this.students.push(student);
+  //   return Promise.resolve(student);
+  // // }
   /*PUT Update Student */
-  updateStudent(Student: Student): Observable<any> {
-    return this.http.put(this.studentsUrl, Student, httpOptions).pipe(
+  update(Student: Student): Observable<any> {
+    return this.http.put(this.studentsUrl + '/students', Student, httpOptions).pipe(
       tap(_ => this.log('updated student index=${Student.index}')),
       catchError(this.handleError<any>('updateStudent'))
     );
   }
   /*POST Add Student*/
-  addStudent(Student: Student): Observable<Student> {
-    return this.http.post<Student>(this.studentsUrl, Student, httpOptions).pipe(
-      tap((student: Student) => this.log('added student with index=${student.index}')),
+  save(student: Student): Observable<Student> {
+    return this.http.post<Student>(this.studentsUrl + '/students', Student, httpOptions).pipe(
+      tap((Student: Student) => this.log('added student with ime=${student.ime}')),
       catchError(this.handleError<Student>('addStudent'))
     );
   }
-  /* GET Student by Index*/
-  getStudentByIndex(studentIndeks: string): Observable<Student> {
-    const url = '${this.studentsUrl}/?index=${index}';
+  /* GET Student by Name*/
+  getStudentByIndex(index: string): Observable<Student> {
+    const url = this.studentsUrl + '/students';
     return this.http.get<Student[]>(url)
       .pipe(
         map(students => students[3]),
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log('${outcome} student index=${index}');
+          this.log('${outcome} student index=index');
         }),
         catchError(this.handleError<Student>('getStudent index=${index}'))
       );
@@ -111,9 +118,9 @@ export class StudentManagementService {
   /* DELETE Student*/
   deleteStudent(Student: Student | number): Observable<Student> {
     const index = typeof Student === 'number' ? Student : Student.indeks;
-    const url = '${this.studentsUrl}/${index}';
-    return this.http.delete<Student>( url, httpOptions ).pipe(
-      tap(_ => this.log('deleted student indeks=${index}')),
+    const url = this.studentsUrl + '/students';
+    return this.http.delete<Student>( url ).pipe(
+      tap(_ => this.log('deleted student indeks=index')),
       catchError(this.handleError<Student>('deleteStudent'))
     );
   }
@@ -128,8 +135,13 @@ export class StudentManagementService {
     }
     return Promise.reject('error');
   }
-  constructor(private http: HttpClient, private messageService: MessageServiceService) {
+  edit(originalStudent: Student, updatedStudent: Student): Promise<Student> {
+    const studentsFromServer = [];
+    Object.assign(studentsFromServer, this.students);
+    this.students = studentsFromServer;
+    return Promise.resolve(updatedStudent);
   }
+
 
 
 }

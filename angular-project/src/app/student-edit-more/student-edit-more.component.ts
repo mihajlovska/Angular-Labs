@@ -18,7 +18,7 @@ export class StudentEditMoreComponent implements OnInit {
   public action = this.CREATE_ACTION;
   protected  studentNew: Student;
   public studentIndeks;
-  constructor(private fb: FormBuilder, private studentService: StudentManagementService, private router: Router,private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private studentService: StudentManagementService, private router: Router, private route: ActivatedRoute) {
     this.createForm();
     this.router = router;
     this.studentService = studentService;
@@ -47,5 +47,6 @@ export class StudentEditMoreComponent implements OnInit {
         this.router.navigate(['list']);
       });
   }
+
 
 }

@@ -21,15 +21,10 @@ export class StudentDetailsComponent implements OnInit {
         console.log('params:', params);
         console.log('indeks:', studentIndeks);
         const studentPromise = this.studentService
-          .findByIndeks(studentIndeks);
-        studentPromise.then(student => {
+          .getStudentByIndex(studentIndeks);
+        studentPromise.subscribe(student => {
           this.student = student;
         });
-        studentPromise.catch(
-          error => {
-            console.error(error.errorMessage);
-          }
-        );
         return studentPromise;
       }));
   }

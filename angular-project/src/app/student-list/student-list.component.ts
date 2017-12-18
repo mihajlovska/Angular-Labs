@@ -11,11 +11,15 @@ export class StudentListComponent implements OnInit {
   title = 'Students information';
   public students: Student[];
   public currentStudent: Student;
-  constructor(private studentService: StudentManagementService) {}
-  ngOnInit(): void {
-    this.studentService.student()
-      .then(students => this.students = students)
-      .catch(error => console.error(error.errorMessage));
+  constructor(private studentService: StudentManagementService) {
+    this.getStudents = this.getStudents.bind(this);
+  }
+  ngOnInit() {
+    this.getStudents();
+  }
+  getStudents(): void {
+    this.studentService.getStudent()
+      .subscribe(students => this.students = students);
   }
   delete(Student: Student): void {
     this.students = this.students.filter(h => h !== Student);

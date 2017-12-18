@@ -13,6 +13,7 @@ export class StudentEditComponent implements OnInit {
   private _editingStudent: Student;
   public action = this.CREATE_ACTION;
   public  student: Student;
+  students: Student[];
 
   @Input('editingStudent')
   set setEditingStudent(editingStudent: Student){
@@ -35,15 +36,24 @@ export class StudentEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getStudent();
   }
-  public save(): void {
-    this.studentService.save(this.student)
-      .then(studentFormServer => this.setStudent(studentFormServer));
-    this.student = new Student();
+  getStudent(): void {
+    this.studentService.getStudent()
+      .subscribe(students => this.students = students);
+  }
+
+  save(ime: String): void {
+   ime = ime.trim();
+   if ( !ime ) { return; }
+   this.studentService.save({ime} as Student)
+     .subscribe(student => {
+       this.students.push(student);
+     });
   }
   public edit() {
-    this.studentService.edit(this._editingStudent, this.student)
-      .then(studentFormServer => this.setStudent(studentFormServer));
+    this.studentService.update(this._editingStudent)
+      .subscribe(studentFormServer => this.setStudent(studentFormServer));
   }
 
 

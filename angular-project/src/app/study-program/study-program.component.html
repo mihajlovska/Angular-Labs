@@ -1,0 +1,15 @@
+<div>
+  <nav class="navbar navbar-light col-md-3">
+    <ul class="nav navbar-nav left-buffer">
+      <li *ngFor="let p of studyProgram" class="nav-item">
+        {{student.ime}}
+        <button title="delete studyProgram"
+                (click)="delete(studyProgram)">Delete</button>
+      </li>
+      <a>
+        +
+      </a>
+    </ul>
+    <router-outlet></router-outlet>
+  </nav>
+</div>

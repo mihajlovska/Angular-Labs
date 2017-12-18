@@ -11,14 +11,17 @@ import { StudentEditMoreComponent } from './student-edit-more/student-edit-more.
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
-import {HttpClientModule} from '@angular/common/http';
-import {MessageServiceService} from './message-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MessageServiceService } from './message-service.service';
+import { StudyProgramComponent } from './study-program/study-program.component';
+import { StudyProgramService } from './study-program.service';
 
 const routes: Routes = [
     {path: 'list', component: StudentListComponent },
     {path: 'details/:indeks', component: StudentDetailsComponent},
     {path: 'new', component: StudentEditComponent },
-    {path: 'edit/:indeks', component: StudentEditMoreComponent}
+    {path: 'edit/:indeks', component: StudentEditMoreComponent},
+    {path: 'studyProgram', component: StudyProgramComponent }
 
   ];
 
@@ -29,21 +32,19 @@ const routes: Routes = [
     StudentEditComponent,
     StudentListComponent,
     StudentEditMoreComponent,
+    StudyProgramComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    HttpClientModule
 
 
   ],
   exports: [RouterModule],
-  providers: [StudentManagementService, MessageServiceService],
+  providers: [StudentManagementService, MessageServiceService, StudyProgramService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

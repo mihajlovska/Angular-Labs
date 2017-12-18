@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-12">
-    <input type="text"
+    Name: <input type="text" #studentName
     class="form-control"
     [(ngModel)]="student.ime"/>
   </div>
   <div class="col-md12">
-    <button class="btn btn-xs btn-success"
-            (click)="save()">
+    <a class="btn btn-xs btn-success" [routerLink]="['/list']" routerLinkActive="active"
+            (click)="save(studentName.value)">
       Create
-    </button>
+    </a>
   </div>
 </div>
