@@ -107,18 +107,17 @@ export class StudentManagementService {
     const url = this.studentsUrl + '/students';
     return this.http.get<Student[]>(url)
       .pipe(
-        map(students => students[3]),
+        map(students => students[0]),
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log('${outcome} student index=index');
+          this.log('${outcome} student index=indeks');
         }),
-        catchError(this.handleError<Student>('getStudent index=${index}'))
+        catchError(this.handleError<Student>('getStudent index=indeks'))
       );
   }
   /* DELETE Student*/
-  deleteStudent(Student: Student | number): Observable<Student> {
-    const index = typeof Student === 'number' ? Student : Student.indeks;
-    const url = this.studentsUrl + '/students';
+  deleteStudent(index): Observable<Student> {
+    const url = this.studentsUrl + '/students/' + index;
     return this.http.delete<Student>( url ).pipe(
       tap(_ => this.log('deleted student indeks=index')),
       catchError(this.handleError<Student>('deleteStudent'))

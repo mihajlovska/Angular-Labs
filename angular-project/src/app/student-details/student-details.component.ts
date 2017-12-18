@@ -13,20 +13,24 @@ import 'rxjs/add/operator/switchMap';
 export class StudentDetailsComponent implements OnInit {
 
   public student: Student;
-  constructor(private studentService: StudentManagementService, private route: ActivatedRoute) { }
-
+  constructor(private studentService: StudentManagementService, private route: ActivatedRoute) {
+    this.getStudent = this.getStudent.bind(this);
+  }
   ngOnInit() {
+    this.getStudent();
+  }
+  getStudent() {
     this.route.params.subscribe((params => {
-        const studentIndeks = params.indeks;
-        console.log('params:', params);
-        console.log('indeks:', studentIndeks);
-        const studentPromise = this.studentService
-          .getStudentByIndex(studentIndeks);
-        studentPromise.subscribe(student => {
-          this.student = student;
-        });
-        return studentPromise;
-      }));
+      const studentIndeks = params.indeks;
+      console.log('params:', params);
+      console.log('indeks:', studentIndeks);
+      const studentPromise = this.studentService
+        .getStudentByIndex(studentIndeks);
+      studentPromise.subscribe(student => {
+        this.student = student;
+      });
+      return studentPromise;
+    }));
   }
 
 }

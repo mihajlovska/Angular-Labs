@@ -2,11 +2,11 @@
   <nav class="navbar navbar-light col-md-3">
     <ul class="nav navbar-nav left-buffer">
       <li *ngFor="let student of students" class="nav-item">
-        <a [routerLink]="['/details',student.indeks]" routerLinkActive="active" class="navbar-link">
+        <a [routerLink]="['/details',student.index]" routerLinkActive="active" class="navbar-link">
           {{student.name}}
         </a>
         <button title="delete student"
-                (click)="delete(student)">Delete</button>
+                (click)="delete(student.index)">Delete</button>
       </li>
       <a [routerLink]="['/new']" routerLinkActive="active" class="btn btn-primary">
         +
