@@ -1,19 +1,59 @@
 <h3>Edit selected student</h3>
 <div>
   <form [formGroup]="studentForm">
-      <label>Name:</label>
-        <input id="name" formControlName="name">
     <div>
-      <label>Surname:</label>
-        <input id="surname" formControlName="surname" >
+      <label>Name: </label>
+
+      <input id="name" formControlName="name" required>
+
+      <div *ngIf="studentForm.get('name').invalid"
+           class="alert alert-danger">
+        <div *ngIf="studentForm.get('name').errors.required">Name is required!</div>
+        <div *ngIf="studentForm.get('name').errors.minLength">
+          Name must be at least 2 characters long.
+        </div>
+        <div *ngIf="studentForm.get('name').errors.maxLength">
+          Name must be maximum 30 characters long.
+        </div>
+      </div>
+
     </div>
     <div>
-      <label>Index:</label>
-        <input id="index" formControlName="index">
+      <label>Surname: </label>
+      <input id="surname" formControlName="surname" required>
+      <div *ngIf="studentForm.get('surname').invalid && (studentForm.get('surname').dirty || studentForm.get('surname').touched)"
+           class="alert alert-danger">
+        <div *ngIf="studentForm.get('surname').errors.required">Last name is required!</div>
+        <div *ngIf="studentForm.get('surname').errors.minLength">
+          Last name must be at least 2 characters long.
+        </div>
+        <div *ngIf="studentForm.get('surname').errors.maxLength">
+          Last name must be maximum 30 characters long.
+        </div>
+      </div>
+
     </div>
     <div>
-      <label>Modul1:</label>
-        <input formControlName="modul1">
+      <label>Index: </label>
+      <input id="index" formControlName="index" required>
+      <div *ngIf="studentForm.get('index').invalid && (studentForm.get('index').dirty || studentForm.get('index').touched)"
+           class="alert alert-danger">
+        <div *ngIf="studentForm.get('index').errors.required">Index is required!</div>
+        <div *ngIf="studentForm.get('index').errors.minLength">
+          Name must be at least 6 characters long.
+        </div>
+        <div *ngIf="studentForm.get('index').errors.maxLength">
+          Name must be maximum 6 characters long.
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <label>Modul1: </label>
+      <input formControlName="modul1">
+      <div *ngIf="studentForm.get('modul1').invalid && (studentForm.get('modul1').dirty || studentForm.get('modul1').touched)"
+           class="alert alert-danger"></div>
+
     </div>
     <button (click)="change()">Change</button>
   </form>

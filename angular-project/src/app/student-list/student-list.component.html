@@ -5,6 +5,8 @@
         <a [routerLink]="['/details',student.indeks]" routerLinkActive="active" class="navbar-link">
           {{student.ime}}
         </a>
+        <button title="delete student"
+                (click)="delete(student)">Delete</button>
       </li>
       <a [routerLink]="['/new']" routerLinkActive="active" class="btn btn-primary">
         +
@@ -12,16 +14,5 @@
     </ul>
     <router-outlet></router-outlet>
   </nav>
-  <div class="col-md-9">
-    <div class="container-fluid">
-      <div class="card">
-        <div class="bg-info">
 
-        </div>
-        <div class="card-body">
-
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

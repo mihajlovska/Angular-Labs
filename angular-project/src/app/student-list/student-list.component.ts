@@ -17,5 +17,9 @@ export class StudentListComponent implements OnInit {
       .then(students => this.students = students)
       .catch(error => console.error(error.errorMessage));
   }
+  delete(Student: Student): void {
+    this.students = this.students.filter(h => h !== Student);
+    this.studentService.deleteStudent(Student).subscribe();
+  }
 
 }

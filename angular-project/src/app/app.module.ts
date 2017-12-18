@@ -9,6 +9,10 @@ import { StudentEditComponent } from './student-edit/student-edit.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentEditMoreComponent } from './student-edit-more/student-edit-more.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import {HttpClientModule} from '@angular/common/http';
+import {MessageServiceService} from './message-service.service';
 
 const routes: Routes = [
     {path: 'list', component: StudentListComponent },
@@ -24,16 +28,22 @@ const routes: Routes = [
     StudentDetailsComponent,
     StudentEditComponent,
     StudentListComponent,
-    StudentEditMoreComponent
+    StudentEditMoreComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
+
+
   ],
   exports: [RouterModule],
-  providers: [StudentManagementService],
+  providers: [StudentManagementService, MessageServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
